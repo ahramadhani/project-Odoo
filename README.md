@@ -88,7 +88,7 @@ views/             - View XML untuk UI
 
 ## 📋 Persyaratan
 
-- **Odoo Version**: 15.0+
+- **Odoo Version**: 19.0+
 - **Dependencies**:
   - Base (core Odoo)
   - Contacts (`contacts`)
