@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ahramadhanimodul_course,ahramadhanimodul.course,model_ahramadhanimodul_course,group_academy_manager,1,1,1,1
+access_ahramadhanimodul_session,ahramadhanimodul.session,model_ahramadhanimodul_session,group_academy_manager,1,1,1,1
+
+access_ahramadhanimodul_course_user,ahramadhanimodul.course_user,model_ahramadhanimodul_course,group_academy_user,1,0,0,0
+access_ahramadhanimodul_session_user,ahramadhanimodul.session_user,model_ahramadhanimodul_session,group_academy_user,1,0,0,0
+
+access_ahramadhanimodul_teacher_level,ahramadhanimodul.teacher_level,model_ahramadhanimodul_teacher_level,,1,1,1,1
+access_ahramadhanimodul_add_attendees,ahramadhanimodul.add_attendees,model_ahramadhanimodul_add_attendees,,1,1,1,1

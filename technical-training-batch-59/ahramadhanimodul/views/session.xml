@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ahramadhanimodul.session list view -->
+    <record id="ahramadhanimodul.session_view_list" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.list</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <list decoration-info="duration &lt; 5" decoration-danger="duration &gt; 15">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="course_id"/>
+                <field name="start_date"/>
+                <field name="duration"/>
+                <field name="number_of_seats"/>
+                <field name="session_code"/>
+                <field name="taken_seats" widget="progressbar"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.session form view -->
+    <record id="ahramadhanimodul.session_view_form" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.form</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button name="action_attendees_report_xlsx" string="Print Attendees" type="object" class="btn-success"/>
+                    <button string="Confirm" type="object" name="action_confirm"
+                        invisible="state != 'draft'" class="oe_highlight" />
+
+                    <button string="Mark as done" type="object" name="action_done"
+                        invisible="state != 'progress'" class="oe_highlight"/>
+                            
+                    <button string="Reset to draft" type="object" name="action_draft"
+                        invisible="state not in ['progress', 'done']" />
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="course_id"/>
+                            <field name="session_code"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="duration"/>
+                            <field name="number_of_seats"/>
+                            <field name="taken_seats" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page name="partner_ids" string="Attendees">
+                            <field name="partner_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="email"/>
+                                    <field name="phone"/>
+                                </list>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="email"/>
+                                            <field name="phone"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.session calendar view -->
+    <record id="ahramadhanimodul.session_view_calendar" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.calendar</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <calendar date_start="start_date" color="course_id" date_stop="stop_date">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                 <field name="partner_id"/>
+                <field name="course_id"/>
+                <field name="duration"/>
+                <field name="number_of_seats"/>
+                <field name="session_code"/>
+                <field name="taken_seats" widget="progressbar"/>
+            </calendar>
+        </field>
+    </record>
+
+     <!-- ahramadhanimodul.session search view -->
+    <record id="ahramadhanimodul.session_view_search" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.search</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Add your fields here -->
+                <group>
+                    <filter name="group_by_course" string="Course" context="{'group_by': 'course_id'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.session graph view -->
+    <record id="ahramadhanimodul.session_view_graph" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.graph</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <graph string="Graph Description">
+                <!-- Add your fields here -->
+                <field name="course_id"/>
+                <field name="number_of_attendees" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="ahramadhanimodul.session_view_kanban" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.session.view.kanban</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_group_by="course_id">
+                <templates>
+                    <t t-name="card" class="mb16">
+                        <field name="name" class="fw-bold fs-5"/>
+                        <field name="partner_id"/>
+                        <field name="course_id"/>
+                        <field name="start_date"/>
+                        <field name="number_of_seats"/>
+                        <field name="duration"/>
+                        <footer class="pt-1 mt-0">
+                            <field name="taken_seats" widget="progressbar"/>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.session action window -->
+    <record id="ahramadhanimodul.session_action" model="ir.actions.act_window">
+        <field name="name">Session</field>
+        <field name="res_model">ahramadhanimodul.session</field>
+        <field name="view_mode">list,form,calendar,graph,kanban</field>
+        <field name="context">{'search_default_group_by_course':1}</field>
+    </record>
+
+</odoo>

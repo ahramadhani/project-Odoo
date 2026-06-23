@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ramadhaniperpuslib.transaksi list view -->
+    <record id="ramadhaniperpuslib.transaksi_view_list" model="ir.ui.view">
+        <field name="name">ramadhaniperpuslib.transaksi.view.list</field>
+        <field name="model">ramadhaniperpuslib.transaksi</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="buku_id"/>
+                <field name="partner_id"/>
+                <field name="tanggal_pinjam"/>
+                <field name="tanggal_kembali"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ramadhaniperpuslib.transaksi form view -->
+    <record id="ramadhaniperpuslib.transaksi_view_form" model="ir.ui.view">
+        <field name="name">ramadhaniperpuslib.transaksi.view.form</field>
+        <field name="model">ramadhaniperpuslib.transaksi</field>
+        <field name="arch" type="xml">
+            <form string="Transaksi">
+                <header>
+                    <button string="Pinjam" type="object" name="action_progress"
+                        invisible="state != 'draft'" class="oe_highlight"/>
+
+                    <button string="Kembalikan" type="object" name="action_done"
+                        invisible="state != 'progress'" class="oe_highlight"/>
+
+                    <button string="Reset to Draft" type="object" name="action_draft"
+                        invisible="state not in ['progress', 'done']"/>
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="buku_id"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="tanggal_pinjam"/>
+                            <field name="tanggal_kembali"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ramadhaniperpuslib.transaksi action window -->
+    <record id="ramadhaniperpuslib.transaksi_action" model="ir.actions.act_window">
+        <field name="name">Transaction</field>
+        <field name="res_model">ramadhaniperpuslib.transaksi</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

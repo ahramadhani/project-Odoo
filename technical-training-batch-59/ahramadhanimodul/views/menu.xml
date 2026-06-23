@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="ahramadhanimodul_menu_root" name="Academy" sequence="1"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="course_menu_act" 
+        name="Course" 
+        parent="ahramadhanimodul_menu_root" 
+        action="ahramadhanimodul.course_action" 
+        sequence="10"/>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="session_menu_act" 
+        name="Session" 
+        parent="ahramadhanimodul_menu_root" 
+        action="ahramadhanimodul.session_action" 
+        sequence="20"/>
+
+</odoo>

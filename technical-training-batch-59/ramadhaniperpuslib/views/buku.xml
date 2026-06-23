@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ramadhaniperpuslib.buku list view -->
+    <record id="ramadhaniperpuslib.buku_view_list" model="ir.ui.view">
+        <field name="name">ramadhaniperpuslib.buku.view.list</field>
+        <field name="model">ramadhaniperpuslib.buku</field>
+        <field name="arch" type="xml">
+            <list>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="total"/>
+                <field name="available_book"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ramadhaniperpuslib.buku form view -->
+    <record id="ramadhaniperpuslib.buku_view_form" model="ir.ui.view">
+        <field name="name">ramadhaniperpuslib.buku.view.form</field>
+        <field name="model">ramadhaniperpuslib.buku</field>
+        <field name="arch" type="xml">
+            <form string="Buku">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="total"/>
+                        <field name="available_book"/>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page name="transaksi_ids" string="Transaksi">
+                            <field name="transaksi_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ramadhaniperpuslib.buku action window -->
+    <record id="ramadhaniperpuslib.buku_action" model="ir.actions.act_window">
+        <field name="name">Book</field>
+        <field name="res_model">ramadhaniperpuslib.buku</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

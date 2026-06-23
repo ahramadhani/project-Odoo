@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ahramadhanimodul.add_attendees form view -->
+    <record id="ahramadhanimodul.add_attendees_view_form" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.add_attendees.view.form</field>
+        <field name="model">ahramadhanimodul.add_attendees</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="session_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Attendees" >
+                            <field name="partner_ids"/>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button type="object" name="confirm" class="btn btn-primary" string="Confirm"/>
+                        <button special="cancel" string="Cancle" class="btn btn-outline-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.add_attendees action window -->
+    <record id="ahramadhanimodul.add_attendees_action" model="ir.actions.act_window">
+        <field name="name">Add Attendees</field>
+        <field name="res_model">ahramadhanimodul.add_attendees</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_session_ids':active_ids}</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="ahramadhanimodul.model_ahramadhanimodul_session"/>
+    </record>
+
+</odoo>

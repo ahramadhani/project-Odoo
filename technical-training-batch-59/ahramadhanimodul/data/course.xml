@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="course_odoo_technical" model="ahramadhanimodul.course">
+        <field name="name">Course Odoo Technical</field>
+        <field name="description">Course odoo technical community edition</field>
+    </record>
+
+    <record id="course_odoo_functional" model="ahramadhanimodul.course">
+        <field name="name">Course Odoo Functional</field>
+        <field name="description">Course odoo technical community edition</field>
+    </record>
+
+    <record id="course_odoo_php" model="ahramadhanimodul.course">
+        <field name="name">Course PHP</field>
+        <field name="description">Course odoo technical community edition</field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ahramadhanimodul.teacher_level list view -->
+    <record id="ahramadhanimodul.teacher_level_view_list" model="ir.ui.view">
+        <field name="name">ahramadhanimodul.teacher_level.view.list</field>
+        <field name="model">ahramadhanimodul.teacher_level</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <!-- Add your fields here -->
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ahramadhanimodul.teacher_level action window -->
+    <record id="ahramadhanimodul.teacher_level_action" model="ir.actions.act_window">
+        <field name="name">Teacher Level</field>
+        <field name="res_model">ahramadhanimodul.teacher_level</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem 
+        id="teacher_level_menu_act" 
+        name="Teacher Level" 
+        parent="contacts.res_partner_menu_config" 
+        action="ahramadhanimodul.teacher_level_action" 
+        sequence="1"/>
+
+</odoo>

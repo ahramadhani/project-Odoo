@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="session_report" model="ir.actions.report">
+        <field name="name">Session</field>
+        <field name="model">ahramadhanimodul.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ahramadhanimodul.session_report_document</field>
+        <field name="report_file">ahramadhanimodul.session_report_document</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="print_report_name">'Session Report - %s - %s' % (object.name, object.course_id.name)</field>
+        <field name="binding_model_id" ref="model_ahramadhanimodul_session"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="session_report_document" name="Session Report Template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- TITLE -->
+                        <div class="text-center mb-4">
+                            <h1 style="font-size:40px; margin-bottom:10px;">
+                                <span t-esc="o.name"/>
+                            </h1>
+
+                            <h2 style="font-size:28px; color:#333;">
+                                <span t-esc="o.course_id.name"/>
+                            </h2>
+                        </div>
+
+                        <!-- INFORMATION -->
+                        <table class="table table-borderless"
+                            style="width:100%; margin-bottom:30px;">
+
+                            <tr>
+                                <td style="width:20%; padding:8px; border:none;">
+                                    <strong>Start Date</strong>
+                                </td>
+
+                                <td style="width:5%; padding:8px; border:none;">:</td>
+
+                                <td style="width:25%; padding:8px; border:none;">
+                                    <span t-esc="o.start_date"/>
+                                </td>
+
+                                <td style="width:20%; padding:8px; border:none;">
+                                    <strong>Instructor</strong>
+                                </td>
+
+                                <td style="width:5%; padding:8px; border:none;">:</td>
+
+                                <td style="width:25%; padding:8px; border:none;">
+                                    <span t-esc="o.partner_id.name"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding:8px; border:none;">
+                                    <strong>Stop Date</strong>
+                                </td>
+
+                                <td style="padding:8px; border:none;">:</td>
+
+                                <td style="padding:8px; border:none;">
+                                    <span t-esc="o.stop_date"/>
+                                </td>
+
+                                <td style="padding:8px; border:none;">
+                                    <strong>Number Of Seats</strong>
+                                </td>
+
+                                <td style="padding:8px; border:none;">:</td>
+
+                                <td style="padding:8px; border:none;">
+                                    <span t-esc="o.number_of_seats"/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <!-- PARTICIPANTS -->
+                        <table class="table table-bordered"
+                            style="width:100%; border-collapse:collapse;">
+
+                            <thead>
+                                <tr style="background-color:#f2f2f2;">
+                                    <th style="width:8%; padding:8px; text-align:center;">
+                                        No
+                                    </th>
+
+                                    <th style="padding:8px;">
+                                        Name
+                                    </th>
+
+                                    <th style="padding:8px;">
+                                        Email
+                                    </th>
+
+                                    <th style="padding:8px;">
+                                        Phone
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <t t-set="no" t-value="1"/>
+                                <t t-foreach="o.partner_ids" t-as="partner">
+
+                                    <tr>
+                                        <td style="padding:8px; text-align:center;">
+                                            <span t-esc="no"/>
+                                            <!-- <span t-esc="partner_index + 1"/> -->
+                                        </td>
+
+                                        <td style="padding:8px;">
+                                            <span t-esc="partner.name"/>
+                                        </td>
+
+                                        <td style="padding:8px;">
+                                            <span t-esc="partner.email or '-'"/>
+                                        </td>
+
+                                        <td style="padding:8px;">
+                                            <span t-esc="partner.phone or '-'"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="no" t-value="no + 1"/>
+                                </t>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
